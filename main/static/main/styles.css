@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*:focus{
+    outline: none;
+}
+
+body {
+    width: 100%;
+    background: #fafafa;
+    position: relative;
+    font-family: 'roboto', sans-serif;
+}
+
+.empty {
+    height: 50px;
+}
+
+.topnav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: #fff;
+    border-bottom: 1px solid #dfdfdf;
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+}
+
+.topnav-wrapper {
+    width: 70%;
+    max-width: 1000px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topnetwork a {
+    float: left;
+    color: #000;
+    background-color: #fff;
+    border-radius: 10%;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: Georgia, 'Times New Roman', Times, serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.topnetworkb a {
+    float: left;
+    color: #000;
+    background-color: #fff;
+    border-radius: 10%;
+    text-align: center;
+    padding: 14px 10px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: Georgia, 'Times New Roman', Times, serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+
+.search-box {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 25px;
+    background: #fafafa;
+    border: 1px solid #dfdfdf;
+    border-radius: 2px;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    text-transform: capitalize;
+}
+
+
+#iconwrap {
+    padding: 8px 10px;
+}
+
+#icon {
+    height: 100%;
+    width: 30px;
+    border-radius: 50%;
+    background-size: cover;
+}
+
+.wrapper {
+    width: 70%;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-gap: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.postwrapper {
+    float: left;
+    margin: 10px;
+    padding: 10px;
+    display: block;
+    width: 100%;
+    background-color: #ddd;
+    color: black;
+    border-radius: 1%;
+}
+
+#usernamepost {
+    color: black;
+    text-decoration: none;
+    
+}
+
+
+.postdesc {
+    background-color: #eee;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.postdesc .avatarpost {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    padding: 0;
+    background: none;
+}
+
+.commentavatar {
+    float: left;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    padding: 0;
+    background: none;
+    margin-right: 5px;
+}
+
+.toppart {
+    width: 75%;
+    height: fit-content;
+    overflow: hidden;
+    border: 0px solid #000;
+    margin: 50px auto;
+    padding: 10px;
+}
+
+.j51k3 {
+    margin-top: 15px;
+}
+
+.t4220 {
+    width: 80px;
+    background-color: #3897f0;
+    border: 1px solid #3897f0;
+    padding: 5px 12px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.t4221 {
+    width: 90px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 5px 12px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.c34j3 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+}
+
+.pageuseravatar img {
+    margin-left: 0px;
+    padding: 0;
+    background: none;
+    width: 150px;
+    height:150px;
+}
+
+.pageuseravatar {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+    float: left;
+    margin-right: 30px;
+}
+
+.bottompart {
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    grid-template-rows: 300px;
+    grid-gap: 20px;
+    padding: 20px;
+    width: 75%;
+    overflow: hidden;
+    border: 0px solid #000;
+    margin: 50px auto;
+    padding: 10px;
+}
+
+.pagepost {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    float: left;
+    margin-right: 30px;
+    border: 0px solid black;
+}
+
+@media only screen and (max-width: 1200px) {
+    .bottompart {
+        grid-template-columns: repeat(2, 300px);
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    .bottompart {
+        grid-template-columns: repeat(1, 300px);
+    }
+  }
+
+.pagepost img {
+    margin-left: 0px;
+    padding: 0;
+    background: none;
+    width: 300px;
+    height:300px;
+}
+
+.postdesc .avatarpost img {
+    border: none;
+}
+
+.posttext {
+    background: #eee;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.commenttext {
+    background: #eee;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    float: none;
+}
+
+.spancomment {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#postimage {
+    width: 100%;
+    object-fit: cover;
+}
+
+.postdesctext {
+    margin-left: 10px;
+}
+
+.loginwrapper {
+    width: 600px;
+    height: 50%;
+    overflow: hidden;
+    border: 0px solid #000;
+    margin: 50px auto;
+    padding: 10px;
+}
+
+.logincontent {
+    width: 500px;
+    height: 60%;
+    margin: 10px auto;
+    background-color: #fff;
+    border: 2px solid #e6e6e6;
+    padding: 40px 50px;
+}
+
+.loginheader {
+    font-size: 150%;
+    margin: auto;
+    position: relative;
+    left: 20px;
+    margin-bottom: 10px;
+}
+
+.loginform {
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 8px 12px;
+  border: 1px solid #dbdbdb;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+.logintext {
+    top: 8px;
+    right: 10px;
+    color: #003569;
+    font-size: 14px;
+    text-decoration: none;
+    font-family: 'Overpass Mono', monospace;
+    letter-spacing: -1px;
+}
+
+.loginbutton {
+    width: 100%;
+    background-color: #3897f0;
+    border: 1px solid #3897f0;
+    padding: 5px 12px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+}
+

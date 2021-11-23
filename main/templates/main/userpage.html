@@ -1,0 +1,121 @@
+{% extends "main/layout.html" %}
+
+{% block head %}
+    <title>{{ pageuser.username }}'s Page</title>
+{% endblock %}
+
+{% block topnav %}
+    <div class="topnetwork">
+        <a href="{% url 'main:index' %}">Network</a>
+    </div>
+    <input type="text" class="search-box" placeholder="search">
+        {% if is_guest == 1 %}
+        <div class="topnetwork">
+            <a href="{% url 'main:login' %}">Login</a>
+            <a href="{% url 'main:signup' %}">Sign Up</a>
+        </div>
+            
+        {% else %}
+        <div class="topnetworkb">
+            <a href="{% url 'main:newpost' %}">New Post</a>
+            <a href="{% url 'main:logout' %}">Log Out</a>
+            <a id="iconwrap" href="{% url 'main:userpage' request.user.username %}"><img id="icon" src="{{ request.user.avatar.url }}" alt="Your Profile"></a>
+        </div> 
+        {% endif %}
+{% endblock %}
+
+{% block body %}
+
+{% if message == 0 %}
+
+<div class="toppart">
+    <div class="pageuseravatar"> 
+        <img src="{{ pageuser.avatar.url }}" alt="">
+    </div>
+    <div class="t44o3">
+        {% if pageuser == request.user %}
+            <span class="c34j3">
+                {{ pageuser.username }}
+            </span>
+        {% else %}
+            {% if is_following == 1 %}
+                <form action="{% url 'main:follow' %}" method="post">
+                    {% csrf_token %}
+                <span class="c34j3">
+                    {{ pageuser.username }}
+                </span>
+                <input type="hidden" value="{{ pageuser.id }}" name="person">
+                <input type="hidden" value="1" name="f">
+                <input type="submit" value="Following" class="t4221">
+                </form>
+            {% else %}
+                <form action="{% url 'main:follow' %}" method="post">
+                    {% csrf_token %}
+                <span class="c34j3">
+                    {{ pageuser.username }}
+                </span>
+                <input type="hidden" value="{{ pageuser.id }}" name="person">
+                <input type="hidden" value="0" name="f">
+                {% if is_guest == 0 %}
+                    <input type="submit" value="Follow" class="t4220">
+                {% else %}
+                    <a href="{% url 'main:login' %}" class="t4220" style="text-decoration: none;">Follow</a>
+                {% endif %}
+                </form>
+            {% endif %}
+        {% endif %}
+
+        <div class="j51k3">
+
+            {% if posts.count == 1 %}
+            <b>                 
+                {{ posts.count }} 
+            </b> Post
+            {% else %}
+            <b>                 
+                {{ posts.count }} 
+            </b> Posts
+            {% endif %}
+             &nbsp;&nbsp;&nbsp; 
+             
+             
+             {% if pageuser.followers.count == 1 %}
+             <b>                 
+                 {{ pageuser.followers.count }} 
+             </b> Follower
+             {% else %}
+             <b>                 
+                 {{ pageuser.followers.count }} 
+             </b> Followers
+             {% endif %}
+             &nbsp;&nbsp;&nbsp; 
+
+             <b> {{ pageuser.following.count }} </b> Following
+        </div>
+        <div class="j51k3">
+            <div>
+                <b> {{ pageuser.full_name}} </b>
+            </div>
+            <div>
+                {{ pageuser.bio }}
+            </div>
+        </div>
+    </div>  
+</div>
+<hr style="width: 80%; margin: auto;">
+<div class="bottompart">
+    {% for post in posts %}
+        <div class = "pagepost">
+            <img src="{{ post.image.url }}" alt="">
+        </div>
+    {% endfor %}
+
+</div>
+
+{% else %}
+
+    <div class="toppart" style="text-align: center; font-family: 'Times New Roman', Times, serif; font-size: 30px;"> Sorry, that user does not exist. </div>
+
+{% endif %}
+
+{% endblock %}

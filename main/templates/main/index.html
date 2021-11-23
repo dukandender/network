@@ -1,0 +1,105 @@
+{% extends "main/layout.html" %}
+{% load static %}
+{% block head %}
+    <title>Network</title>
+{% endblock %}
+
+{% block topnav %}
+    <div class="topnetwork">
+        <a href="{% url 'main:index' %}">Network</a>
+    </div>
+    <input type="text" class="search-box" placeholder="search">
+        {% if is_guest == 1 %}
+        <div class="topnetwork">
+            <a href="{% url 'main:login' %}">Login</a>
+            <a href="{% url 'main:signup' %}">Sign Up</a>
+        </div>
+            
+        {% else %}
+        <div class="topnetworkb">
+            <a href="{% url 'main:newpost' %}">New Post</a>
+            <a href="{% url 'main:logout' %}">Log Out</a>
+            <a id="iconwrap" href="{% url 'main:userpage' request.user.username %}"><img id="icon" src="{{ request.user.avatar.url }}" alt="Your Profile"></a>
+        </div> 
+        {% endif %}
+
+{% endblock %}
+
+{% block body %}
+<div class='wrapper'>
+    {% for post in posts %}
+        <div class="postwrapper">
+            <div class="postdesc"><a href="{% url 'main:userpage' post.owner.username %}"><img class="avatarpost" src="{{ post.owner.avatar.url }}" alt="{{ post.owner.full_name }}'s Avatar">
+                <div class="postdesctext">
+                    <div id="usernamepost">{{ post.owner.username }}</div> 
+                </a>
+                    {% if post.location %}
+                        is at {{ post.location }} on {{ post.date }}
+                    {% else %}
+                        posted on {{ post.date }}
+                    {% endif %}
+                </div>
+            </div>
+            <div id="pimwrap">
+                <img id="postimage" src="{{ post.image.url }}" alt="image">
+            </div>
+            <div class="posttext">
+                {{ post.text }}
+                {% if request.user == post.owner %}
+                <span class="deletebutton">
+                    <form action="{% url 'main:deletepost' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="post" value="{{ post.id }}">
+                        <input type="submit" value="Delete" style="color: red;" class="deletebutton">
+                    </form>
+                </span>
+                {% endif %}
+            </div>
+            <button onclick = "toggleComments{{ forloop.counter }}()">Toggle Comment Section</button>
+            <div id = "comments{{ forloop.counter }}" style="display: none;">
+                {% for comment in post.comments.all %}
+                <div class="commenttext">
+                    <a href="{% url 'main:userpage' comment.owner.username %}" style="text-decoration: none; color: black;">
+                    <img class="commentavatar" src="{{ comment.owner.avatar.url }}" alt="">
+                <span class="spancomment">
+                    <b>{{ comment.owner.username }}:</b>
+                </a>
+                    {{ comment.text }}
+                </span> 
+                {% if request.user == comment.owner %}
+                <span class="deletebutton">
+                    <form action="{% url 'main:deletecomment' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="comment" value="{{ comment.id }}">
+                        <input type="submit" value="Delete" style="color: red;">
+                    </form>
+                </span>
+                {% endif %}
+                </div>  
+                
+                {% endfor %}
+                <form action="{% url 'main:postcomment' %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="text" placeholder="Enter a comment...">
+                    <input type="hidden" name="post" value="{{ post.id }}">
+                    <input type="submit" value="Post"> 
+                </form>
+
+            </div>
+
+            <script>
+                function toggleComments{{ forloop.counter }}() {
+                    var x = document.getElementById("comments{{ forloop.counter }}");
+                    if (x.style.display === "none") {
+                        x.style.display = "block";
+                    } else {
+                        x.style.display = "none";
+                    }
+                }
+            </script>
+
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+

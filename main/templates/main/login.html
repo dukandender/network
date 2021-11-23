@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/main/styles.css">
+        <title>Login</title>
+    </head>
+
+    <body>
+        <div class = "loginwrapper">
+            <div class = "logincontent">
+                <div class = "loginheader">
+                    Network
+                </div>
+                    {% if message %}
+                        <div style="color: red;">{{ message }}</div>
+                    {% endif %}
+                    <form action="{% url 'main:login' %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="username" placeholder="Username" class="loginform">
+                        <input type="password" name="password" placeholder="Password" class="loginform">
+                        <input type="submit" value="Log In" class="loginbutton">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

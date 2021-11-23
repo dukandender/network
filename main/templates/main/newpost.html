@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/main/styles.css">
+        <title>New Post</title>
+    </head>
+
+    <body>
+        <div class = "loginwrapper">
+            <div class = "logincontent">
+                <div class = "loginheader">
+                    New Post
+                </div>
+                    {% if message %}
+                        <div style="color: red;">{{ message }}</div>
+                    {% endif %}
+                    <form action="{% url 'main:newpost' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="loginform">
+                        {{ form.as_p }}
+                        </div>
+                        <input type="submit" value="Post" class="loginbutton">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
